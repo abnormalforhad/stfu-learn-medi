@@ -1543,6 +1543,16 @@ function toggleCase(id) {
   const body = document.getElementById(`caseBody${id}`);
   const isExpanded = card.classList.contains('expanded');
 
+  // Close all other open cases first
+  document.querySelectorAll('.case-card.expanded').forEach(openCard => {
+    if (openCard !== card) {
+      const openId = openCard.dataset.id;
+      const openBody = document.getElementById(`caseBody${openId}`);
+      openBody.style.maxHeight = '0';
+      openCard.classList.remove('expanded');
+    }
+  });
+
   if (isExpanded) {
     body.style.maxHeight = '0';
     card.classList.remove('expanded');
@@ -1555,6 +1565,10 @@ function toggleCase(id) {
         body.style.maxHeight = body.scrollHeight + 'px';
       }
     }, 300);
+    // Smooth scroll to the opened case
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
   }
 }
 
