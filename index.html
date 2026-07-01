@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STFU and Learn Medi — Emergency Clinical Reference</title>
+  <meta name="description" content="Comprehensive emergency clinical case reference with age-wise dosing, drug alternatives, and quick protocols. 19 cases covering acute care, trauma, cardiac, respiratory, and more." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <div class="logo-text">STFU & Learn <span>Medi</span></div>
+      </a>
+      <div class="header-search">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search cases, drugs, symptoms..." />
+      </div>
+      <div class="header-stats">
+        <div class="stat-pill"><span class="num">19</span> Cases</div>
+        <div class="stat-pill"><span class="num">80+</span> Drugs</div>
+        <button class="abbr-toggle" onclick="toggleModal('abbrModal')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r=".5"/></svg>
+          Abbreviations
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero animate-in">
+    <h1>Emergency Clinical <span class="highlight">Case Reference</span></h1>
+    <p>19 curated clinical cases with complete age-wise dosing, pharmacological alternatives, safety warnings, and quick-reference protocols. Built for medical learners who mean business.</p>
+  </section>
+
+  <!-- ===== FILTERS ===== -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All Cases</button>
+    <button class="filter-btn" data-filter="gi">GI / Abdominal</button>
+    <button class="filter-btn" data-filter="trauma">Trauma</button>
+    <button class="filter-btn" data-filter="resp">Respiratory</button>
+    <button class="filter-btn" data-filter="cardiac">Cardiac</button>
+    <button class="filter-btn" data-filter="infect">Infectious</button>
+    <button class="filter-btn" data-filter="obgyn">OB/GYN</button>
+    <button class="filter-btn" data-filter="neuro">Neuro</button>
+    <button class="filter-btn" data-filter="derm">Derm / Allergy</button>
+    <button class="filter-btn" data-filter="emergency">Emergency</button>
+    <button class="filter-btn" data-filter="peds">Pediatrics</button>
+  </div>
+
+  <!-- ===== RESULTS COUNT ===== -->
+  <div class="results-count" id="resultsCount"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+    <div class="cases-grid" id="casesGrid">
+      <!-- Cases rendered by JS -->
+    </div>
+    <div class="no-results" id="noResults">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6"/></svg>
+      <h3>No cases found</h3>
+      <p>Try adjusting your search or filter criteria.</p>
+    </div>
+
+    <!-- ===== QUICK REFERENCE ===== -->
+    <section class="quick-ref" id="quickRef">
+      <h2 class="quick-ref-title">Quick Reference Tables</h2>
+      <p class="quick-ref-subtitle">Essential lookup tables for emergency prescribing</p>
+      <div class="ref-cards" id="refCards">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">STFU & Learn <span>Medi</span></div>
+      <p class="footer-disclaimer">This document is for educational and quick-reference purposes only. Always follow local hospital protocols, verify drug interactions, check renal/hepatic function, and confirm allergy status before prescribing. Doses are standard references — individual patient factors may require adjustment.</p>
+      <p class="footer-bottom">19 Emergency Clinical Cases &bull; Age-Wise Dosing &bull; Pharmacological Alternatives</p>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ===== ABBREVIATION MODAL ===== -->
+  <div class="modal-overlay" id="abbrOverlay" onclick="toggleModal('abbrModal')"></div>
+  <div class="modal" id="abbrModal">
+    <div class="modal-header">
+      <h3>Medical Abbreviations</h3>
+      <button class="modal-close" onclick="toggleModal('abbrModal')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <table>
+        <thead><tr><th>Abbr</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>NPO</td><td>Nil Per Os (nothing by mouth)</td></tr>
+          <tr><td>TFO</td><td>To Follow Orally</td></tr>
+          <tr><td>DNS</td><td>Dextrose Normal Saline</td></tr>
+          <tr><td>DA</td><td>Dextrose Aqua</td></tr>
+          <tr><td>H/S</td><td>Hartmann's Solution (Ringer's Lactate)</td></tr>
+          <tr><td>C/S</td><td>Cholera Saline (Normal Saline 0.9%)</td></tr>
+          <tr><td>R/M/E</td><td>Routine, Microscopy, Examination</td></tr>
+          <tr><td>USG W/A</td><td>Ultrasonography of Whole Abdomen</td></tr>
+          <tr><td>CBC</td><td>Complete Blood Count</td></tr>
+          <tr><td>RBS</td><td>Random Blood Sugar</td></tr>
+          <tr><td>ECG</td><td>Electrocardiogram</td></tr>
+          <tr><td>P/A</td><td>Posteroanterior</td></tr>
+          <tr><td>EBF</td><td>Exclusive Breast Feeding</td></tr>
+          <tr><td>ORS</td><td>Oral Rehydration Salt</td></tr>
+          <tr><td>PV</td><td>Per Vaginum</td></tr>
+          <tr><td>AWD</td><td>Acute Watery Diarrhea</td></tr>
+          <tr><td>COPD</td><td>Chronic Obstructive Pulmonary Disease</td></tr>
+          <tr><td>AAMI</td><td>Acute Anterior Myocardial Infarction</td></tr>
+          <tr><td>CPR</td><td>Cardiopulmonary Resuscitation</td></tr>
+          <tr><td>IG</td><td>Immunoglobulin</td></tr>
+          <tr><td>BD</td><td>Twice daily (Bis Die)</td></tr>
+          <tr><td>TDS</td><td>Three times daily (Ter Die Sumendum)</td></tr>
+          <tr><td>QDS</td><td>Four times daily (Quater Die Sumendum)</td></tr>
+          <tr><td>OD</td><td>Once daily (Omni Die)</td></tr>
+          <tr><td>PRN</td><td>As needed (Pro Re Nata)</td></tr>
+          <tr><td>HS</td><td>At bedtime (Hora Somni)</td></tr>
+          <tr><td>SOS</td><td>If needed (Si Opus Sit)</td></tr>
+          <tr><td>Stat</td><td>Immediately</td></tr>
+          <tr><td>ASV</td><td>Anti-Snake Venom</td></tr>
+          <tr><td>PEP</td><td>Post-Exposure Prophylaxis</td></tr>
+          <tr><td>GCS</td><td>Glasgow Coma Scale</td></tr>
+          <tr><td>ACS</td><td>Acute Coronary Syndrome</td></tr>
+          <tr><td>LMWH</td><td>Low Molecular Weight Heparin</td></tr>
+          <tr><td>PPI</td><td>Proton Pump Inhibitor</td></tr>
+          <tr><td>MDI</td><td>Metered Dose Inhaler</td></tr>
+          <tr><td>NSAID</td><td>Non-Steroidal Anti-Inflammatory Drug</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
