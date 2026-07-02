@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>STFU and Learn Medi — Emergency Clinical Reference</title>
-  <meta name="description" content="Comprehensive emergency clinical case reference with age-wise dosing, drug alternatives, and quick protocols. 19 cases covering acute care, trauma, cardiac, respiratory, and more." />
+  <meta name="description" content="Comprehensive clinical case reference with age-wise dosing, drug alternatives, and quick protocols. 35 cases covering acute care, trauma, cardiac, respiratory, dermatology, pediatrics, and more." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -23,8 +23,8 @@
         <input type="text" id="searchInput" placeholder="Search cases, drugs, symptoms..." />
       </div>
       <div class="header-stats">
-        <div class="stat-pill"><span class="num">19</span> Cases</div>
-        <div class="stat-pill"><span class="num">80+</span> Drugs</div>
+        <div class="stat-pill"><span class="num">35</span> Cases</div>
+        <div class="stat-pill"><span class="num">130+</span> Drugs</div>
         <button class="abbr-toggle" onclick="toggleModal('abbrModal')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r=".5"/></svg>
           Abbreviations
@@ -36,7 +36,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero animate-in">
     <h1>Emergency Clinical <span class="highlight">Case Reference</span></h1>
-    <p>19 curated clinical cases with complete age-wise dosing, pharmacological alternatives, safety warnings, and quick-reference protocols. Built for medical learners who mean business.</p>
+    <p>35 curated clinical cases with complete age-wise dosing, pharmacological alternatives, safety warnings, and quick-reference protocols. Built for medical learners who mean business.</p>
   </section>
 
   <!-- ===== FILTERS ===== -->
@@ -52,6 +52,7 @@
     <button class="filter-btn" data-filter="derm">Derm / Allergy</button>
     <button class="filter-btn" data-filter="emergency">Emergency</button>
     <button class="filter-btn" data-filter="peds">Pediatrics</button>
+    <button class="filter-btn" data-filter="surgical">Surgical</button>
   </div>
 
   <!-- ===== RESULTS COUNT ===== -->
@@ -83,7 +84,7 @@
     <div class="footer-inner">
       <div class="footer-logo">STFU & Learn <span>Medi</span></div>
       <p class="footer-disclaimer">This document is for educational and quick-reference purposes only. Always follow local hospital protocols, verify drug interactions, check renal/hepatic function, and confirm allergy status before prescribing. Doses are standard references — individual patient factors may require adjustment.</p>
-      <p class="footer-bottom">19 Emergency Clinical Cases &bull; Age-Wise Dosing &bull; Pharmacological Alternatives</p>
+      <p class="footer-bottom">35 Clinical Cases &bull; Age-Wise Dosing &bull; Pharmacological Alternatives</p>
     </div>
   </footer>
 

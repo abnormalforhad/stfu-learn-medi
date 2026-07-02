@@ -509,6 +509,225 @@ body {
 }
 .cross-ref:hover { color: var(--primary-dark); text-decoration: underline; }
 
+/* =========== MEDICATION CARD (Prescription Style) =========== */
+.med-card {
+  background: var(--bg-warm);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.med-card:hover {
+  border-color: var(--border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.med-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+
+/* Form badge accent colors on left border */
+.med-card[data-form="vial"]::before         { background: linear-gradient(180deg, #2980B9, #3498DB); }
+.med-card[data-form="ampule"]::before       { background: linear-gradient(180deg, #8E44AD, #9B59B6); }
+.med-card[data-form="tablet"]::before       { background: linear-gradient(180deg, #27AE60, #2ECC71); }
+.med-card[data-form="capsule"]::before      { background: linear-gradient(180deg, #16A085, #1ABC9C); }
+.med-card[data-form="syrup"]::before        { background: linear-gradient(180deg, #E67E22, #F39C12); }
+.med-card[data-form="infusion"]::before     { background: linear-gradient(180deg, #2C3E50, #34495E); }
+.med-card[data-form="nebulization"]::before { background: linear-gradient(180deg, #2980B9, #5DADE2); }
+.med-card[data-form="cream"]::before,
+.med-card[data-form="ointment"]::before     { background: linear-gradient(180deg, #D4A853, #E2C07A); }
+.med-card[data-form="lotion"]::before       { background: linear-gradient(180deg, #D4A853, #E2C07A); }
+.med-card[data-form="inhaler"]::before      { background: linear-gradient(180deg, #3498DB, #5DADE2); }
+.med-card[data-form="vaccine"]::before      { background: linear-gradient(180deg, #E74C3C, #C0392B); }
+.med-card[data-form="sachet"]::before       { background: linear-gradient(180deg, #F39C12, #F1C40F); }
+.med-card[data-form="drops"]::before        { background: linear-gradient(180deg, #1ABC9C, #48C9B0); }
+.med-card[data-form="suppository"]::before  { background: linear-gradient(180deg, #7F8C8D, #95A5A6); }
+.med-card[data-form="prefilled"]::before    { background: linear-gradient(180deg, #C0392B, #E74C3C); }
+.med-card[data-form="solution"]::before     { background: linear-gradient(180deg, #2980B9, #5DADE2); }
+
+/* Form badge */
+.med-form-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+.med-form-badge .form-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* Form badge colors */
+.badge-vial         { background: #EBF5FB; color: #2471A3; }
+.badge-ampule       { background: #F4ECF7; color: #7D3C98; }
+.badge-tablet       { background: #EAFAF1; color: #1E8449; }
+.badge-capsule      { background: #E8F8F5; color: #148F77; }
+.badge-syrup        { background: #FEF5E7; color: #CA6F1E; }
+.badge-infusion     { background: #EAECEE; color: #2C3E50; }
+.badge-nebulization { background: #EBF5FB; color: #2E86C1; }
+.badge-cream,
+.badge-ointment     { background: #FEF9E7; color: #B7950B; }
+.badge-lotion       { background: #FEF9E7; color: #B7950B; }
+.badge-inhaler      { background: #D6EAF8; color: #2471A3; }
+.badge-vaccine      { background: #FDEDEC; color: #C0392B; }
+.badge-sachet       { background: #FEF9E7; color: #B7950B; }
+.badge-drops        { background: #E8F8F5; color: #148F77; }
+.badge-suppository  { background: #F2F3F4; color: #566573; }
+.badge-prefilled    { background: #FDEDEC; color: #C0392B; }
+.badge-solution     { background: #EBF5FB; color: #2E86C1; }
+
+/* Med card header row */
+.med-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0.5rem;
+}
+.med-card-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.med-card-dose {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary);
+  white-space: nowrap;
+  padding: 4px 14px;
+  background: var(--primary-light);
+  border-radius: 8px;
+  letter-spacing: -0.01em;
+}
+.med-card-class {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+/* Prescription pipeline — the visual flow */
+.rx-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0.85rem 0;
+  flex-wrap: wrap;
+}
+.rx-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  position: relative;
+}
+.rx-step-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 1px;
+}
+.rx-step-value {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.rx-step-container {
+  background: #F4ECF7;
+  color: #6C3483;
+  border: 1px solid #D7BDE2;
+}
+.rx-step-route {
+  background: #D6EAF8;
+  color: #1A5276;
+  border: 1px solid #AED6F1;
+}
+.rx-step-timing {
+  background: #FDEDEC;
+  color: #922B21;
+  border: 1px solid #F5B7B1;
+}
+.rx-step-frequency {
+  background: #EAFAF1;
+  color: #1E6B3E;
+  border: 1px solid #A9DFBF;
+}
+
+.rx-arrow {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0 6px;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+/* Alternatives row */
+.med-card-alt {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: 6px;
+  border: 1px dashed var(--border-light);
+}
+.med-card-alt strong {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Cross-ref card (compact) */
+.med-card-crossref {
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  transition: all var(--transition);
+}
+.med-card-crossref:hover {
+  border-color: var(--primary-muted);
+  box-shadow: 0 2px 8px rgba(29,107,83,0.06);
+}
+.med-card-crossref .med-card-title {
+  font-size: 0.95rem;
+}
+.med-card-crossref .med-form-badge {
+  margin-bottom: 0;
+  font-size: 0.62rem;
+  padding: 2px 8px;
+}
+
 /* =========== QUICK REFERENCE =========== */
 .quick-ref {
   margin-top: 3rem;
@@ -644,6 +863,12 @@ body {
   .ref-cards { grid-template-columns: 1fr; }
   .med-table { font-size: 0.78rem; }
   .med-table td, .med-table th { padding: 8px 10px; }
+  .med-card { padding: 1rem; }
+  .med-card-header { flex-direction: column; gap: 4px; }
+  .med-card-dose { align-self: flex-start; font-size: 0.95rem; }
+  .rx-pipeline { gap: 4px; }
+  .rx-step { padding: 5px 10px; font-size: 0.72rem; }
+  .rx-arrow { margin: 0 3px; font-size: 0.85rem; }
 }
 @media (max-width: 480px) {
   .logo-text { font-size: 1rem; }

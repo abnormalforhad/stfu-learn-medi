@@ -15,6 +15,27 @@ const ICONS = {
   zap: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
 };
 
+// ─── Form type icons + labels ───
+const FORM_CONFIG = {
+  vial:         { icon: '💉', label: 'Vial' },
+  ampule:       { icon: '🧪', label: 'Ampule' },
+  tablet:       { icon: '💊', label: 'Tablet' },
+  capsule:      { icon: '💊', label: 'Capsule' },
+  syrup:        { icon: '🧴', label: 'Syrup' },
+  infusion:     { icon: '🩸', label: 'Infusion' },
+  nebulization: { icon: '💨', label: 'Nebulization' },
+  cream:        { icon: '🧴', label: 'Cream' },
+  ointment:     { icon: '🧴', label: 'Ointment' },
+  lotion:       { icon: '🧴', label: 'Lotion' },
+  inhaler:      { icon: '💨', label: 'Inhaler' },
+  vaccine:      { icon: '💉', label: 'Vaccine' },
+  sachet:       { icon: '📦', label: 'Sachet' },
+  drops:        { icon: '💧', label: 'Drops' },
+  suppository:  { icon: '💊', label: 'Suppository' },
+  prefilled:    { icon: '💉', label: 'Prefilled Syringe' },
+  solution:     { icon: '💧', label: 'Solution' },
+};
+
 // ─── CASE DATA ───
 const CASES = [
   // ═══════════════════════════════════════
@@ -35,7 +56,13 @@ const CASES = [
     alerts: [],
     medications: [
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin — Antibacterial",
         alternatives: "Cefotaxime, Cefuroxime, Cefixime (PO), Amoxicillin-Clavulanate",
         dosing: [
@@ -48,7 +75,13 @@ const CASES = [
         warnings: ["CONTRAINDICATED in neonates receiving IV calcium — risk of fatal ceftriaxone-calcium precipitates. Use Cefotaxime instead."]
       },
       {
-        name: "Inj. Algin 5mg",
+        name: "Inj. Algin",
+        dose: "5mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Antispasmodic",
         alternatives: "Hyoscine Butylbromide, Drotaverine, Dicyclomine, Mebeverine",
         dosing: [
@@ -59,7 +92,13 @@ const CASES = [
         warnings: ["Avoid antispasmodics in children <6 years unless specifically indicated."]
       },
       {
-        name: "Inj. Rolac 30mg",
+        name: "Inj. Rolac",
+        dose: "30mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS → SOS",
         drugClass: "NSAID — Analgesic (Ketorolac)",
         alternatives: "Diclofenac, Ketorolac (PO), Tramadol, Paracetamol IV, Ibuprofen",
         dosing: [
@@ -70,8 +109,14 @@ const CASES = [
         warnings: ["Max 5 days use. Contraindicated in renal impairment, active GI bleed, children <2y. Co-prescribe PPI.", "Tramadol: Avoid in children <12 years."]
       },
       {
-        name: "Inj. Paracetamol (Extra Alternative)",
-        drugClass: "Analgesic / Antipyretic",
+        name: "Inj. Paracetamol",
+        dose: "1g",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q6h",
+        drugClass: "Analgesic / Antipyretic (Extra Alternative)",
         alternatives: "Can be used alongside or instead of NSAIDs",
         dosing: [
           ["Neonate", "7.5 mg/kg", "IV", "q6–8h", "30 mg/kg/day"],
@@ -101,7 +146,13 @@ const CASES = [
     alerts: [{ type: "tip", text: "WHO recommends Zinc supplementation for all children with diarrhea for 10–14 days to reduce severity and duration." }],
     medications: [
       {
-        name: "Tab. Xinc 20mg",
+        name: "Tab. Xinc",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "Micronutrient — Zinc Sulfate",
         alternatives: "Any Zinc Sulfate supplement, Zinc Gluconate, Zinc Acetate",
         dosing: [
@@ -114,6 +165,12 @@ const CASES = [
       },
       {
         name: "Syp. Enterogermina",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "1 vial",
+        route: "PO",
+        timing: "—",
+        frequency: "BD",
         drugClass: "Probiotic — Bacillus clausii",
         alternatives: "Bacillus clausii probiotics, Lactobacillus, Saccharomyces boulardii (250 mg BD)",
         dosing: [
@@ -124,7 +181,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Emistat 8mg",
+        name: "Inj. Emistat",
+        dose: "8mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "5-HT3 Antagonist — Antiemetic (Ondansetron)",
         alternatives: "Ondansetron, Granisetron, Domperidone, Metoclopramide (adults only)",
         dosing: [
@@ -153,7 +216,13 @@ const CASES = [
     alerts: [{ type: "warning", text: "Assess for internal hemorrhage, fractures, and head injury. Primary survey (ABCDE) first." }],
     medications: [
       {
-        name: "Inj. T.T. 1 amp",
+        name: "Inj. T.T.",
+        dose: "0.5mL",
+        form: "vaccine",
+        quantity: "1 amp",
+        route: "I/M",
+        timing: "Stat",
+        frequency: "—",
         drugClass: "Vaccine — Tetanus Toxoid",
         alternatives: "Tetanus Immunoglobulin (TIG) 250–500 IU IM for high-risk wounds",
         dosing: [
@@ -165,7 +234,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Cap. Flex 500mg",
+        name: "Cap. Flex",
+        dose: "500mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "q6h",
         drugClass: "1st-gen Cephalosporin — Cephalexin",
         alternatives: "Cephalexin, Amoxicillin-Clavulanate, Cefadroxil, Clindamycin (penicillin allergy)",
         dosing: [
@@ -175,7 +250,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Rolac 10mg",
+        name: "Tab. Rolac",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "q4–6h",
         drugClass: "NSAID — Ketorolac (Oral)",
         alternatives: "Ibuprofen, Naproxen, Diclofenac, Paracetamol",
         dosing: [
@@ -185,7 +266,13 @@ const CASES = [
         warnings: ["Max 5 days total (including IV + PO). Co-prescribe PPI."]
       },
       {
-        name: "Cap. OP 20mg / Dextac 30mg",
+        name: "Cap. OP / Dextac",
+        dose: "20mg / 30mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "PPI — Gastroprotective (Omeprazole / Lansoprazole)",
         alternatives: "Pantoprazole, Esomeprazole, Rabeprazole",
         dosing: [
@@ -197,7 +284,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Cevit / Vasco 250mg",
+        name: "Tab. Cevit / Vasco",
+        dose: "250mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD",
         drugClass: "Vitamin C — Ascorbic Acid (Wound Healing)",
         alternatives: "Generic Ascorbic Acid, any Vitamin C supplement",
         dosing: [
@@ -209,7 +302,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Trego / Bactrocin Ointment",
+        name: "Trego / Bactrocin",
+        dose: "—",
+        form: "ointment",
+        quantity: "Thin layer",
+        route: "Topical",
+        timing: "—",
+        frequency: "TDS",
         drugClass: "Topical Antibiotic",
         alternatives: "Mupirocin, Fusidic Acid 2% cream/ointment, Silver Sulfadiazine, Neosporin",
         dosing: [
@@ -239,6 +338,12 @@ const CASES = [
     medications: [
       {
         name: "Nebulization",
+        dose: "5mg + 500mcg",
+        form: "nebulization",
+        quantity: "1 neb",
+        route: "Neb",
+        timing: "Stat",
+        frequency: "q20min ×3, then q4–6h",
         drugClass: "Bronchodilator Combo",
         alternatives: "Salbutamol + Ipratropium Bromide, Levosalbutamol + Ipratropium",
         dosing: [
@@ -249,7 +354,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Levofloxacin, Azithromycin, Cefotaxime, Amoxicillin-Clavulanate",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
@@ -257,7 +368,13 @@ const CASES = [
         crossRef: 1
       },
       {
-        name: "Inj. Cortson 100mg",
+        name: "Inj. Cortson",
+        dose: "100mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q6–8h",
         drugClass: "Corticosteroid — Hydrocortisone",
         alternatives: "Methylprednisolone, Dexamethasone, Prednisolone (PO)",
         dosing: [
@@ -269,7 +386,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Monas 10mg",
+        name: "Tab. Monas",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (evening)",
         drugClass: "Leukotriene Receptor Antagonist — Montelukast",
         alternatives: "Zafirlukast",
         dosing: [
@@ -280,7 +403,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Docopa 200mg",
+        name: "Tab. Docopa",
+        dose: "200mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD–TDS",
         drugClass: "Bronchodilator — Doxofylline",
         alternatives: "Theophylline, Aminophylline, Deriphylline",
         dosing: [
@@ -291,7 +420,13 @@ const CASES = [
         warnings: ["Theophylline has narrow therapeutic index. Monitor serum levels (10–20 mcg/mL). Toxicity → seizures and arrhythmias."]
       },
       {
-        name: "Inj. OP 40mg",
+        name: "Inj. OP",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Pantoprazole IV",
         alternatives: "Inj. Pantoprazole 40mg, Omeprazole, Esomeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
@@ -300,6 +435,12 @@ const CASES = [
       },
       {
         name: "Inj. Lasix",
+        dose: "20–40mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD–BD",
         drugClass: "Loop Diuretic — Furosemide",
         alternatives: "Torsemide, Bumetanide, Spironolactone (potassium-sparing)",
         dosing: [
@@ -330,7 +471,13 @@ const CASES = [
     alerts: [{ type: "danger", text: "NEVER give Aspirin to children <16 years — risk of Reye's Syndrome (except Kawasaki disease under specialist supervision)." }],
     medications: [
       {
-        name: "Nebulization with Windel Plus",
+        name: "Nebulization Windel Plus",
+        dose: "1.25mg + 500mcg",
+        form: "nebulization",
+        quantity: "1 neb",
+        route: "Neb",
+        timing: "Stat",
+        frequency: "q20min ×3, then q4–6h",
         drugClass: "Bronchodilator — Levosalbutamol + Ipratropium",
         alternatives: "Levosalbutamol + Ipratropium, Standard Salbutamol + Ipratropium",
         dosing: [
@@ -341,7 +488,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Ecosprin 75mg",
+        name: "Ecosprin",
+        dose: "75mg",
+        form: "tablet",
+        quantity: "4 tabs (300mg chew)",
+        route: "PO",
+        timing: "Stat",
+        frequency: "then 75mg OD",
         drugClass: "Antiplatelet — Aspirin",
         alternatives: "Generic Aspirin, any Acetylsalicylic Acid",
         dosing: [
@@ -351,7 +504,13 @@ const CASES = [
         warnings: ["NEVER in children <16 years — Reye's Syndrome risk."]
       },
       {
-        name: "Clopid 75mg",
+        name: "Clopid",
+        dose: "75mg",
+        form: "tablet",
+        quantity: "4–8 tabs (loading)",
+        route: "PO",
+        timing: "Stat",
+        frequency: "then 75mg OD",
         drugClass: "Antiplatelet — P2Y12 Inhibitor (Clopidogrel)",
         alternatives: "Ticagrelor (180 mg load → 90 mg BD), Prasugrel (60 mg load → 10 mg OD)",
         dosing: [
@@ -361,7 +520,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Ceftriaxone 1g",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Cefotaxime",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
@@ -369,7 +534,13 @@ const CASES = [
         crossRef: 1
       },
       {
-        name: "Atovar 80mg",
+        name: "Atovar",
+        dose: "80mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "Statin — Atorvastatin",
         alternatives: "Rosuvastatin (5–40 mg OD; 20 mg ≈ atorvastatin 40 mg), Simvastatin, Pitavastatin",
         dosing: [
@@ -380,7 +551,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Cortson 100mg",
+        name: "Inj. Cortson",
+        dose: "100mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q6–8h",
         drugClass: "Corticosteroid — Hydrocortisone",
         alternatives: "Hydrocortisone, Methylprednisolone, Dexamethasone",
         dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
@@ -388,7 +565,13 @@ const CASES = [
         crossRef: 4
       },
       {
-        name: "Tab. Doxiva 200mg",
+        name: "Tab. Doxiva",
+        dose: "200mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD–TDS",
         drugClass: "Bronchodilator — Doxofylline",
         alternatives: "Doxofylline, Theophylline, Aminophylline",
         dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
@@ -396,7 +579,13 @@ const CASES = [
         crossRef: 4
       },
       {
-        name: "Tab. Monas 10mg",
+        name: "Tab. Monas",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (evening)",
         drugClass: "Leukotriene Receptor Antagonist — Montelukast",
         alternatives: "Montelukast, Zafirlukast",
         dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
@@ -424,7 +613,13 @@ const CASES = [
     alerts: [{ type: "danger", text: "Rule out ectopic pregnancy as priority. USG and serial β-hCG essential. Cross-match blood if Hb <8 g/dL or hemodynamically unstable." }],
     medications: [
       {
-        name: "Inj. Moxin 500mg",
+        name: "Inj. Moxin",
+        dose: "500mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Aminopenicillin — Amoxicillin",
         alternatives: "Amoxicillin, Amoxicillin-Clavulanate, Cefuroxime, Clindamycin",
         dosing: [
@@ -435,7 +630,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Traxyl 500mg",
+        name: "Inj. Traxyl",
+        dose: "500mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Antifibrinolytic — Tranexamic Acid",
         alternatives: "Tranexamic Acid, Ethamsylate, Aminocaproic Acid",
         dosing: [
@@ -446,29 +647,53 @@ const CASES = [
         warnings: ["Contraindicated in active thromboembolic disease. Caution if history of DVT/PE."]
       },
       {
-        name: "Inj. Algin 5mg",
+        name: "Inj. Algin",
+        dose: "5mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Antispasmodic — Hyoscine Butylbromide",
         alternatives: "Hyoscine Butylbromide, Drotaverine",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
         crossRef: 1, warnings: []
       },
       {
-        name: "Inj. Emistat 8mg",
+        name: "Inj. Emistat",
+        dose: "8mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "SOS",
         drugClass: "Antiemetic — Ondansetron",
         alternatives: "Ondansetron, Granisetron",
         dosing: [["See Case 2", "Full dosing table", "—", "—", "—"]],
         crossRef: 2, warnings: []
       },
       {
-        name: "Inj. OP 40mg",
+        name: "Inj. OP",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Omeprazole",
         alternatives: "Omeprazole, Pantoprazole, Esomeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Inj. Oxytocin (Extra Alternative)",
-        drugClass: "Uterotonic — For postpartum hemorrhage if applicable",
+        name: "Inj. Oxytocin",
+        dose: "10 IU",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/M or I/V",
+        timing: "Stat",
+        frequency: "Repeat q15min PRN",
+        drugClass: "Uterotonic — For postpartum hemorrhage (Extra Alternative)",
         alternatives: "Misoprostol (sublingual/rectal), Ergometrine",
         dosing: [
           ["Adult (PPH)", "10 IU IM or 5 IU slow IV", "IM/IV", "Stat, repeat q15min PRN", "Max 40 IU"],
@@ -499,6 +724,12 @@ const CASES = [
     medications: [
       {
         name: "Inj. Rabipur Vaccine",
+        dose: "1mL",
+        form: "vaccine",
+        quantity: "1 vial",
+        route: "I/M",
+        timing: "Day 0",
+        frequency: "Days 0,3,7,14,28",
         drugClass: "Cell-Culture Rabies Vaccine",
         alternatives: "Verorab, Abhayrab — all equivalent",
         dosing: [
@@ -509,7 +740,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Rabies Immunoglobulin (RIG) — Cat III",
+        name: "Rabies Immunoglobulin (RIG)",
+        dose: "20 IU/kg",
+        form: "vial",
+        quantity: "As per weight",
+        route: "Infiltrate wound + I/M",
+        timing: "Stat",
+        frequency: "Once (Cat III only)",
         drugClass: "Passive Immunization",
         alternatives: "Human RIG (HRIG), Equine RIG (ERIG)",
         dosing: [
@@ -519,14 +756,26 @@ const CASES = [
         warnings: ["Skin test before ERIG administration. Observe 30 min for anaphylaxis."]
       },
       {
-        name: "Inj. T.T Vaccine 1 amp",
+        name: "Inj. T.T Vaccine",
+        dose: "0.5mL",
+        form: "vaccine",
+        quantity: "1 amp",
+        route: "I/M",
+        timing: "Stat",
+        frequency: "—",
         drugClass: "Vaccine — Standard Tetanus Toxoid",
         alternatives: "Standard Tetanus Toxoid, TIG for high-risk wounds",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Cap. Fluclox 500/250mg",
+        name: "Cap. Fluclox",
+        dose: "500mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "QDS",
         drugClass: "Penicillinase-resistant Penicillin — Flucloxacillin",
         alternatives: "Amoxicillin-Clavulanate, Cefuroxime, Doxycycline",
         dosing: [
@@ -538,7 +787,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Rolac / Flamex 20mg",
+        name: "Tab. Rolac / Flamex",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS",
         drugClass: "NSAID — Analgesic",
         alternatives: "Diclofenac, Ibuprofen, Naproxen, Paracetamol",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
@@ -566,7 +821,13 @@ const CASES = [
     alerts: [{ type: "tip", text: "ORS (WHO low-osmolarity): Na 75 mEq/L, K 20 mEq/L, Glucose 75 mmol/L. Give as much as tolerated between IV rounds." }],
     medications: [
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Cefixime, Azithromycin, Ciprofloxacin (adults)",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
@@ -574,6 +835,12 @@ const CASES = [
       },
       {
         name: "Tab. Famotack",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD",
         drugClass: "H2 Receptor Antagonist — Famotidine",
         alternatives: "Ranitidine, Famotidine, Omeprazole, Pantoprazole",
         dosing: [
@@ -585,21 +852,39 @@ const CASES = [
       },
       {
         name: "Tab. Xinc",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "Micronutrient — Zinc Sulfate",
         alternatives: "Any Zinc Sulfate supplement",
         dosing: [["See Case 2", "Full dosing table", "—", "—", "—"]],
         crossRef: 2, warnings: []
       },
       {
-        name: "Inj. Emistat 8mg",
+        name: "Inj. Emistat",
+        dose: "8mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Antiemetic — Ondansetron",
         alternatives: "Ondansetron, Granisetron, Domperidone",
         dosing: [["See Case 2", "Full dosing table", "—", "—", "—"]],
         crossRef: 2, warnings: []
       },
       {
-        name: "ORS + IV Ringer's Lactate (Extra Alternative)",
-        drugClass: "Fluid & Electrolyte Replacement",
+        name: "ORS + IV Ringer's Lactate",
+        dose: "—",
+        form: "sachet",
+        quantity: "As needed",
+        route: "PO / I/V",
+        timing: "Stat",
+        frequency: "Continuous",
+        drugClass: "Fluid & Electrolyte Replacement (Extra Alternative)",
         alternatives: "WHO ORS, Pedialyte, Normal Saline 0.9%",
         dosing: [
           ["Mild dehydration", "50–100 mL/kg ORS", "PO", "Over 4 hours", "Plan A/B"],
@@ -628,7 +913,13 @@ const CASES = [
     alerts: [{ type: "danger", text: "Fluoroquinolones: FDA black box warning for tendon rupture, peripheral neuropathy. Avoid in children/adolescents (cartilage damage). Avoid in pregnancy." }],
     medications: [
       {
-        name: "Inj. Cipro 200mg",
+        name: "Inj. Cipro",
+        dose: "200mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "Fluoroquinolone — Ciprofloxacin",
         alternatives: "Levofloxacin, Ofloxacin, Azithromycin",
         dosing: [
@@ -640,7 +931,13 @@ const CASES = [
         warnings: ["Avoid in children/adolescents except life-threatening infections. Avoid in pregnancy."]
       },
       {
-        name: "Inj. Metro 500mg",
+        name: "Inj. Metro",
+        dose: "500mg",
+        form: "vial",
+        quantity: "1 bottle",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Nitroimidazole — Metronidazole",
         alternatives: "Tinidazole, Ornidazole, Secnidazole",
         dosing: [
@@ -652,7 +949,13 @@ const CASES = [
         warnings: ["Metronidazole + Alcohol = Disulfiram-like reaction. Avoid alcohol during and 48h after treatment."]
       },
       {
-        name: "Tab. Enterogermina oral solution",
+        name: "Syp. Enterogermina",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "1 vial",
+        route: "PO",
+        timing: "—",
+        frequency: "BD–TDS",
         drugClass: "Probiotic — Bacillus clausii",
         alternatives: "Probiotics (Saccharomyces boulardii), Lactobacillus GG",
         dosing: [["See Case 2", "Full dosing table", "—", "—", "—"]],
@@ -678,7 +981,13 @@ const CASES = [
     alerts: [{ type: "warning", text: "Assess for spinal injury — immobilize C-spine. Check for internal hemorrhage and fractures. Primary survey (ABCDE) first." }],
     medications: [
       {
-        name: "Inj. Todol 30mg",
+        name: "Inj. Todol",
+        dose: "30mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q6h",
         drugClass: "NSAID — Ketorolac (analgesic)",
         alternatives: "Ketorolac, Diclofenac, Paracetamol IV, Tramadol, Morphine (severe pain)",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
@@ -686,6 +995,12 @@ const CASES = [
       },
       {
         name: "Inj. Mampred",
+        dose: "40–125mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q6h",
         drugClass: "Corticosteroid — Methylprednisolone",
         alternatives: "Methylprednisolone, Dexamethasone, Hydrocortisone",
         dosing: [
@@ -698,6 +1013,12 @@ const CASES = [
       },
       {
         name: "Inj. OP",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Pantoprazole",
         alternatives: "Pantoprazole, Omeprazole, Esomeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
@@ -722,7 +1043,13 @@ const CASES = [
     alerts: [{ type: "warning", text: "EBF indicates neonatal/infant case. Drug choices reflect serious neonatal sepsis protocol. Carbapenems are LAST-RESORT — de-escalate based on culture." }],
     medications: [
       {
-        name: "Inj. Xilmex 750mg",
+        name: "Inj. Xilmex",
+        dose: "750mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "2nd-gen Cephalosporin — Cefuroxime",
         alternatives: "Cefuroxime, Ceftriaxone (avoid in neonates on IV calcium), Ampicillin + Gentamicin",
         dosing: [
@@ -733,7 +1060,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Meropen 500mg",
+        name: "Inj. Meropen",
+        dose: "500mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q8h",
         drugClass: "Carbapenem — Meropenem (Reserved Antibiotic)",
         alternatives: "Imipenem, Doripenem, Ertapenem",
         dosing: [
@@ -745,8 +1078,14 @@ const CASES = [
         warnings: ["Carbapenems are LAST-RESORT antibiotics. Use only for confirmed MDR infections. Always de-escalate based on culture sensitivity."]
       },
       {
-        name: "Syp. Paracetamol (Extra Alternative)",
-        drugClass: "Antipyretic / Analgesic",
+        name: "Syp. Paracetamol",
+        dose: "15mg/kg",
+        form: "syrup",
+        quantity: "As per weight",
+        route: "PO",
+        timing: "—",
+        frequency: "q4–6h",
+        drugClass: "Antipyretic / Analgesic (Extra Alternative)",
         alternatives: "Ibuprofen syrup (>3 months), Paracetamol suppository",
         dosing: [
           ["Neonate", "10–15 mg/kg", "PO/PR", "q6–8h", "60 mg/kg/day"],
@@ -776,14 +1115,26 @@ const CASES = [
     alerts: [{ type: "danger", text: "Assess GCS immediately. If GCS ≤8, consider intubation and airway protection. Rule out: stroke, hypoglycemia, meningitis, poisoning, post-ictal state." }],
     medications: [
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Cefotaxime, Cefuroxime, Meropenem (if meningitis suspected)",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
         crossRef: 1, warnings: []
       },
       {
-        name: "Inj. Oradexon 30mg",
+        name: "Inj. Oradexon",
+        dose: "30mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "Corticosteroid — Dexamethasone (Cerebral Edema)",
         alternatives: "Dexamethasone, Methylprednisolone, Mannitol 20% (for raised ICP)",
         dosing: [
@@ -797,14 +1148,26 @@ const CASES = [
       },
       {
         name: "Inj. OP",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Pantoprazole",
         alternatives: "Pantoprazole, Omeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Inj. Mannitol 20% (Extra Alternative)",
-        drugClass: "Osmotic Diuretic — For raised ICP",
+        name: "Inj. Mannitol 20%",
+        dose: "100–200mL",
+        form: "infusion",
+        quantity: "1 bottle",
+        route: "I/V",
+        timing: "Over 20–30 min",
+        frequency: "q4–6h",
+        drugClass: "Osmotic Diuretic — For raised ICP (Extra Alternative)",
         alternatives: "Hypertonic saline 3%",
         dosing: [
           ["Child", "0.25–1 g/kg", "IV", "Over 20–30 min, q4–6h", "Monitor serum osmolality"],
@@ -833,14 +1196,26 @@ const CASES = [
     alerts: [],
     medications: [
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Cefotaxime, Cefuroxime",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
         crossRef: 1, warnings: []
       },
       {
-        name: "Inj. Algin 50mg",
+        name: "Inj. Algin",
+        dose: "50mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "q6–8h",
         drugClass: "Antispasmodic / Analgesic",
         alternatives: "Hyoscine Butylbromide, Drotaverine, Paracetamol",
         dosing: [
@@ -850,14 +1225,26 @@ const CASES = [
         warnings: ["If Metamizole (Dipyrone): risk of agranulocytosis — banned in some countries. Monitor blood counts if used >7 days."]
       },
       {
-        name: "Inj. Metro 400mg",
+        name: "Inj. Metro",
+        dose: "400mg",
+        form: "vial",
+        quantity: "1 bottle",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "Nitroimidazole — Metronidazole",
         alternatives: "Tinidazole, Ornidazole",
         dosing: [["See Case 9", "Full dosing table", "—", "—", "—"]],
         crossRef: 9, warnings: []
       },
       {
-        name: "Inj. OP 40mg",
+        name: "Inj. OP",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Omeprazole",
         alternatives: "Omeprazole, Pantoprazole, Esomeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
@@ -881,34 +1268,64 @@ const CASES = [
     medications: [
       {
         name: "Inj. T.T. Vax",
+        dose: "0.5mL",
+        form: "vaccine",
+        quantity: "1 amp",
+        route: "I/M",
+        timing: "Stat",
+        frequency: "—",
         drugClass: "Vaccine — Tetanus Toxoid",
         alternatives: "Tetanus Toxoid, TIG for high-risk",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Inj. Fluclox 500mg",
+        name: "Inj. Fluclox",
+        dose: "500mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "QDS",
         drugClass: "Penicillin — Flucloxacillin",
         alternatives: "Amoxicillin-Clavulanate, Cefuroxime, Doxycycline",
         dosing: [["See Case 7", "Full dosing table", "—", "—", "—"]],
         crossRef: 7, warnings: []
       },
       {
-        name: "Inj. Rolac 10mg",
+        name: "Inj. Rolac",
+        dose: "10mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
         drugClass: "NSAID — Ketorolac",
         alternatives: "Ketorolac, Diclofenac, Ibuprofen, Paracetamol",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
         crossRef: 1, warnings: []
       },
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Cefuroxime, Cefotaxime, Amoxicillin-Clavulanate",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
         crossRef: 1, warnings: []
       },
       {
-        name: "Inj. Pantonix 40mg",
+        name: "Inj. Pantonix",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Pantoprazole",
         alternatives: "Pantoprazole, Omeprazole, Esomeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
@@ -934,6 +1351,12 @@ const CASES = [
     medications: [
       {
         name: "Nebulization Windel Plus / Budicort",
+        dose: "5mg Salb + 1mg Bud",
+        form: "nebulization",
+        quantity: "1 neb",
+        route: "Neb",
+        timing: "Stat",
+        frequency: "q20min ×3, then q4–6h",
         drugClass: "Bronchodilator + Inhaled Corticosteroid",
         alternatives: "Salbutamol + Ipratropium / Fluticasone, Budesonide nebulization",
         dosing: [
@@ -944,14 +1367,26 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Ceftriaxone 1gm",
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "3rd-gen Cephalosporin",
         alternatives: "Levofloxacin, Azithromycin, Amoxicillin-Clavulanate",
         dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
         crossRef: 1, warnings: []
       },
       {
-        name: "Tab. Bizoran 5/20mg",
+        name: "Tab. Bizoran",
+        dose: "5/20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "CCB + ARB — Amlodipine + Olmesartan",
         alternatives: "Amlodipine + Olmesartan, Amlodipine alone, Telmisartan + Amlodipine",
         dosing: [
@@ -962,14 +1397,26 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Monas 10mg",
+        name: "Tab. Monas",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (evening)",
         drugClass: "LTRA — Montelukast",
         alternatives: "Zafirlukast",
         dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
         crossRef: 4, warnings: []
       },
       {
-        name: "Tab. Docopa 200mg",
+        name: "Tab. Docopa",
+        dose: "200mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD–TDS",
         drugClass: "Bronchodilator — Doxofylline",
         alternatives: "Doxofylline, Theophylline, Aminophylline",
         dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
@@ -977,6 +1424,12 @@ const CASES = [
       },
       {
         name: "Azmasol / Bexitrol Inhaler",
+        dose: "100–200mcg",
+        form: "inhaler",
+        quantity: "1–2 puffs",
+        route: "MDI",
+        timing: "—",
+        frequency: "q4–6h PRN",
         drugClass: "SABA / LABA+ICS — Salbutamol MDI / Salmeterol + Fluticasone",
         alternatives: "Salbutamol MDI, Salmeterol + Fluticasone, Formoterol + Budesonide",
         dosing: [
@@ -988,7 +1441,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Mucomyst DT 600mg",
+        name: "Mucomyst DT",
+        dose: "600mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD–BD",
         drugClass: "Mucolytic — Acetylcysteine",
         alternatives: "Acetylcysteine, Ambroxol, Bromhexine, Carbocisteine",
         dosing: [
@@ -1015,7 +1474,13 @@ const CASES = [
     alerts: [{ type: "warning", text: "Prolonged use of topical steroids on perianal skin → atrophy, telangiectasia. Limit to 7 days." }],
     medications: [
       {
-        name: "Tab. Az 500mg",
+        name: "Tab. Az",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "Macrolide Antibiotic — Azithromycin",
         alternatives: "Azithromycin, Clarithromycin, Erythromycin, Metronidazole",
         dosing: [
@@ -1027,6 +1492,12 @@ const CASES = [
       },
       {
         name: "Erion Cream",
+        dose: "—",
+        form: "cream",
+        quantity: "Apply peri-anally",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD–TDS",
         drugClass: "Topical Anti-haemorrhoidal — Hydrocortisone + Lidocaine",
         alternatives: "Hydrocortisone + Lidocaine cream, Preparation H, Proctosedyl",
         dosing: [
@@ -1035,7 +1506,13 @@ const CASES = [
         warnings: ["Do not use >7 days — risk of skin atrophy."]
       },
       {
-        name: "Daflon 500mg",
+        name: "Daflon",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "3 tabs (acute) / 1 tab (maint.)",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS ×4d → BD ×3d",
         drugClass: "Venoprotective — Diosmin + Hesperidin",
         alternatives: "Diosmin + Hesperidin, Troxerutin, Rutosides",
         dosing: [
@@ -1045,14 +1522,26 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Ciprocin 500mg",
+        name: "Ciprocin",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD",
         drugClass: "Fluoroquinolone — Ciprofloxacin",
         alternatives: "Ciprofloxacin, Levofloxacin, Metronidazole",
         dosing: [["See Case 9", "PO: 250–500 mg BD", "—", "—", "—"]],
         crossRef: 9, warnings: []
       },
       {
-        name: "Flamex 400mg",
+        name: "Flamex",
+        dose: "400mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS",
         drugClass: "NSAID — Ibuprofen",
         alternatives: "Ibuprofen, Naproxen, Diclofenac, Paracetamol",
         dosing: [
@@ -1064,14 +1553,26 @@ const CASES = [
       },
       {
         name: "Xorel / OP",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "PPI — Pantoprazole / Omeprazole",
         alternatives: "Pantoprazole, Omeprazole, Rabeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Sitz Bath + Stool Softener (Extra Alternative)",
-        drugClass: "Non-pharmacological + Lactulose",
+        name: "Sitz Bath + Stool Softener",
+        dose: "—",
+        form: "solution",
+        quantity: "15–30 mL / warm water",
+        route: "PO / Topical",
+        timing: "—",
+        frequency: "OD–TDS",
+        drugClass: "Non-pharmacological + Lactulose (Extra Alternative)",
         alternatives: "Lactulose syrup, Ispaghula husk, Bisacodyl suppository",
         dosing: [
           ["Adult (Lactulose)", "15–30 mL", "PO", "OD–BD", "Adjust to soft stool"],
@@ -1102,14 +1603,26 @@ const CASES = [
     alerts: [{ type: "danger", text: "AAMI is a medical EMERGENCY. Initiate MONA protocol. Activate cath lab for primary PCI if available. Door-to-balloon time <90 min." }],
     medications: [
       {
-        name: "Tab. Clopid 75mg",
+        name: "Tab. Clopid",
+        dose: "75mg",
+        form: "tablet",
+        quantity: "4–8 tabs (loading)",
+        route: "PO",
+        timing: "Stat",
+        frequency: "then 75mg OD",
         drugClass: "Antiplatelet — Clopidogrel",
         alternatives: "Ticagrelor, Prasugrel",
         dosing: [["See Case 5", "Full dosing table", "—", "—", "—"]],
         crossRef: 5, warnings: []
       },
       {
-        name: "Tab. Colostat 10mg",
+        name: "Tab. Colostat",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "Statin — Atorvastatin",
         alternatives: "Rosuvastatin, Atorvastatin, Simvastatin, Pitavastatin",
         dosing: [["See Case 5", "Full dosing table", "—", "—", "—"]],
@@ -1117,13 +1630,25 @@ const CASES = [
       },
       {
         name: "Cap. OP",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "PPI — Omeprazole",
         alternatives: "Omeprazole, Pantoprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Tab. Bizoran 5/40mg",
+        name: "Tab. Bizoran",
+        dose: "5/40mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "CCB + ARB — Amlodipine + Valsartan",
         alternatives: "Amlodipine + Valsartan, Amlodipine + Telmisartan, Losartan + Amlodipine",
         dosing: [
@@ -1133,7 +1658,13 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Inj. Cardinex 60mg",
+        name: "Inj. Cardinex",
+        dose: "60mg",
+        form: "prefilled",
+        quantity: "1 syringe",
+        route: "S/C",
+        timing: "Stat",
+        frequency: "BD",
         drugClass: "LMWH — Enoxaparin (Anticoagulant)",
         alternatives: "Enoxaparin, Heparin (UFH), Fondaparinux",
         dosing: [
@@ -1146,7 +1677,13 @@ const CASES = [
         warnings: ["Monitor platelet count for HIT — check day 4 and 8. Hold if platelets drop >50%."]
       },
       {
-        name: "Tab. Pase 0.5mg",
+        name: "Tab. Pase",
+        dose: "0.5mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD–TDS",
         drugClass: "Benzodiazepine — Clonazepam (Anxiolytic)",
         alternatives: "Clonazepam, Lorazepam, Midazolam (prefer short-acting in MI)",
         dosing: [
@@ -1157,8 +1694,14 @@ const CASES = [
         warnings: ["Use cautiously in MI — may cause respiratory depression."]
       },
       {
-        name: "Inj. Morphine (Extra Alternative — MONA Protocol)",
-        drugClass: "Opioid Analgesic",
+        name: "Inj. Morphine",
+        dose: "2–4mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V slow",
+        timing: "Stat",
+        frequency: "q5–15 min PRN",
+        drugClass: "Opioid Analgesic (Extra Alternative — MONA Protocol)",
         alternatives: "Fentanyl (50–100 mcg IV), Pethidine (avoid in MI)",
         dosing: [
           ["Adult", "2–4 mg IV", "IV slow", "q5–15 min PRN", "Max 10–15 mg"],
@@ -1167,8 +1710,14 @@ const CASES = [
         warnings: ["Monitor respiratory rate. Have Naloxone ready. Can cause hypotension and bradycardia."]
       },
       {
-        name: "Tab. GTN / Nitroglycerin (Extra Alternative — MONA Protocol)",
-        drugClass: "Nitrate Vasodilator",
+        name: "Tab. GTN / Nitroglycerin",
+        dose: "0.3–0.6mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "SL",
+        timing: "Stat",
+        frequency: "q5 min ×3 max",
+        drugClass: "Nitrate Vasodilator (Extra Alternative — MONA Protocol)",
         alternatives: "Isosorbide dinitrate, Isosorbide mononitrate",
         dosing: [
           ["Adult (sublingual)", "0.3–0.6 mg", "SL", "q5 min ×3 max", "If no relief → cath lab"],
@@ -1193,7 +1742,13 @@ const CASES = [
     alerts: [{ type: "tip", text: "2nd-gen antihistamines (fexofenadine, cetirizine, loratadine) preferred over 1st-gen — less sedation, fewer anticholinergic effects." }],
     medications: [
       {
-        name: "Tab. Fexofast 120mg",
+        name: "Tab. Fexofast",
+        dose: "120mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "2nd-gen Antihistamine — Fexofenadine",
         alternatives: "Cetirizine, Loratadine, Levocetirizine, Desloratadine, Bilastine",
         dosing: [
@@ -1204,14 +1759,26 @@ const CASES = [
         warnings: []
       },
       {
-        name: "Tab. Toramax 10mg",
+        name: "Tab. Toramax",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "q4–6h",
         drugClass: "NSAID — Ketorolac",
         alternatives: "Ketorolac, Ibuprofen, Diclofenac, Naproxen, Paracetamol",
         dosing: [["See Case 3", "PO: 10 mg q4–6h, max 40 mg/day", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Tab. Xorel 20mg",
+        name: "Tab. Xorel",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD",
         drugClass: "PPI — Rabeprazole",
         alternatives: "Rabeprazole, Omeprazole, Pantoprazole, Esomeprazole",
         dosing: [
@@ -1222,6 +1789,12 @@ const CASES = [
       },
       {
         name: "Topicon Cream",
+        dose: "—",
+        form: "cream",
+        quantity: "Thin layer",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD",
         drugClass: "Topical Corticosteroid — Betamethasone",
         alternatives: "Betamethasone cream, Mometasone, Clobetasol, Hydrocortisone (milder)",
         dosing: [
@@ -1231,8 +1804,14 @@ const CASES = [
         warnings: ["Potent topical steroids: Avoid face, groin, axillae. Prolonged use → skin atrophy, striae, adrenal suppression (esp. children). Use FTU dosing."]
       },
       {
-        name: "Calamine Lotion (Extra Alternative)",
-        drugClass: "Topical Anti-pruritic",
+        name: "Calamine Lotion",
+        dose: "—",
+        form: "lotion",
+        quantity: "Apply to itchy areas",
+        route: "Topical",
+        timing: "—",
+        frequency: "PRN",
+        drugClass: "Topical Anti-pruritic (Extra Alternative)",
         alternatives: "Menthol cream, Crotamiton, Pramoxine",
         dosing: [
           ["All ages", "Apply to itchy areas", "Topical", "PRN (as needed)", "Safe for long-term use"],
@@ -1263,6 +1842,12 @@ const CASES = [
     medications: [
       {
         name: "Anti-Snake Venom (ASV)",
+        dose: "10 vials (100mL)",
+        form: "vial",
+        quantity: "10 vials in 200mL NS",
+        route: "I/V infusion",
+        timing: "Over 1 hour",
+        frequency: "Repeat 6 vials q6h if needed",
         drugClass: "Polyvalent Antivenom",
         alternatives: "Polyvalent ASV (no substitute — specific treatment)",
         dosing: [
@@ -1274,6 +1859,12 @@ const CASES = [
       },
       {
         name: "Inj. Roxadex",
+        dose: "8mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat (before ASV)",
+        frequency: "—",
         drugClass: "Corticosteroid — Dexamethasone (ASV Premedication)",
         alternatives: "Dexamethasone, Hydrocortisone, Methylprednisolone",
         dosing: [
@@ -1284,6 +1875,12 @@ const CASES = [
       },
       {
         name: "Inj. Avil",
+        dose: "10–20mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V slow",
+        timing: "Stat (pre-ASV)",
+        frequency: "then 4mg PO TDS",
         drugClass: "1st-gen Antihistamine — Chlorpheniramine",
         alternatives: "Chlorpheniramine, Promethazine, Diphenhydramine",
         dosing: [
@@ -1295,7 +1892,13 @@ const CASES = [
         warnings: ["Chlorpheniramine IV must be given SLOWLY (over 1 min). Rapid push → transient hypotension.", "Promethazine contraindicated in <2 years (fatal respiratory depression)."]
       },
       {
-        name: "Inj. OP 40mg",
+        name: "Inj. OP",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "OD",
         drugClass: "PPI — Pantoprazole",
         alternatives: "Pantoprazole, Omeprazole",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
@@ -1303,14 +1906,26 @@ const CASES = [
       },
       {
         name: "Inj. T.T.",
+        dose: "0.5mL",
+        form: "vaccine",
+        quantity: "1 amp",
+        route: "I/M",
+        timing: "Stat",
+        frequency: "—",
         drugClass: "Vaccine — Tetanus Toxoid",
         alternatives: "Tetanus Toxoid, TIG for high-risk",
         dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
         crossRef: 3, warnings: []
       },
       {
-        name: "Inj. Adrenaline (Extra — Anaphylaxis Kit)",
-        drugClass: "Sympathomimetic — Epinephrine",
+        name: "Inj. Adrenaline",
+        dose: "0.3–0.5mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/M (thigh)",
+        timing: "Stat",
+        frequency: "q5–15 min PRN",
+        drugClass: "Sympathomimetic — Epinephrine (Extra — Anaphylaxis Kit)",
         alternatives: "No substitute for anaphylaxis",
         dosing: [
           ["Child (anaphylaxis)", "0.01 mg/kg (1:1000)", "IM (anterolateral thigh)", "q5–15 min PRN", "Max 0.3 mg/dose"],
@@ -1318,6 +1933,1270 @@ const CASES = [
           ["Adult (ASV pre-med)", "0.25 mg", "SC", "Stat before ASV", "—"]
         ],
         warnings: ["Always have Adrenaline ready during ASV infusion. IM preferred over SC for anaphylaxis (faster absorption)."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 20: Pompholyx
+  // ═══════════════════════════════════════
+  {
+    id: 20,
+    title: "Pompholyx (Dyshidrotic Eczema)",
+    categories: ["derm"],
+    severity: "mod",
+    catColor: "cat-derm",
+    complaint: "Itchy vesicles on hands and feet — Pompholyx",
+    details: [],
+    alerts: [{ type: "tip", text: "Pompholyx often flares with stress, sweating, or contact allergens. Avoid harsh soaps." }],
+    medications: [
+      {
+        name: "Tab. Fluclox",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "QDS (7 days)",
+        drugClass: "Penicillinase-resistant Penicillin — Flucloxacillin",
+        alternatives: "Amoxicillin-Clavulanate, Cefuroxime, Doxycycline",
+        dosing: [["See Case 7", "Full dosing table", "—", "—", "—"]],
+        crossRef: 7, warnings: []
+      },
+      {
+        name: "Tab. Esofid Mups",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "Before meal",
+        frequency: "OD (20 days)",
+        drugClass: "PPI — Esomeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Rabeprazole",
+        dosing: [
+          ["Child (1–11y, 10–20 kg)", "10 mg", "PO", "OD", "—"],
+          ["Child (>20 kg)", "10–20 mg", "PO", "OD", "—"],
+          ["Adolescent/Adult", "20–40 mg", "PO", "OD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Tab. Rupa",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Rupatadine",
+        alternatives: "Fexofenadine, Cetirizine, Loratadine, Bilastine",
+        dosing: [
+          ["Child (2–11y, >10 kg)", "2.5–5 mg", "PO", "OD", "—"],
+          ["Adolescent/Adult", "10 mg", "PO", "OD–BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Zemer Cream",
+        dose: "—",
+        form: "cream",
+        quantity: "Thin layer",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD (20 days)",
+        drugClass: "Topical Corticosteroid — Clobetasol/Mometasone",
+        alternatives: "Mometasone, Betamethasone, Hydrocortisone (milder)",
+        dosing: [
+          ["Adult", "Thin layer to affected area", "Topical", "BD", "Max 2–4 weeks"]
+        ],
+        warnings: ["Potent topical steroid. Limit to 2–4 weeks. Avoid face/flexures."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 21: Fever & URTI (Outpatient)
+  // ═══════════════════════════════════════
+  {
+    id: 21,
+    title: "Fever & URTI (Outpatient)",
+    categories: ["infect", "resp"],
+    severity: "mod",
+    catColor: "cat-infect",
+    complaint: "Fever, running nose, cough — 7 days",
+    details: [],
+    alerts: [],
+    medications: [
+      {
+        name: "Tab. Azithromycin",
+        dose: "200mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "After meal",
+        frequency: "OD (5 days)",
+        drugClass: "Macrolide Antibiotic — Azithromycin",
+        alternatives: "Clarithromycin, Erythromycin, Amoxicillin",
+        dosing: [["See Case 16", "Full dosing table", "—", "—", "—"]],
+        crossRef: 16, warnings: []
+      },
+      {
+        name: "Tab. Dipu",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Desloratadine",
+        alternatives: "Fexofenadine, Cetirizine, Loratadine, Levocetirizine",
+        dosing: [
+          ["Child (6–11y)", "2.5 mg", "PO", "OD", "—"],
+          ["Adolescent/Adult", "5–10 mg", "PO", "OD–BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Tab. Triulock",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "Leukotriene Receptor Antagonist — Montelukast",
+        alternatives: "Montelukast, Zafirlukast",
+        dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
+        crossRef: 4, warnings: []
+      },
+      {
+        name: "Syp. Daykof",
+        dose: "10mL",
+        form: "syrup",
+        quantity: "2 tsp",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS (7 days)",
+        drugClass: "Antitussive / Expectorant — Cough Syrup",
+        alternatives: "Dextromethorphan, Ambroxol, Bromhexine, Carbocisteine",
+        dosing: [
+          ["Child (2–6y)", "2.5–5 mL", "PO", "TDS", "—"],
+          ["Child (6–12y)", "5 mL", "PO", "TDS", "—"],
+          ["Adult", "10 mL (2 tsp)", "PO", "TDS", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Viodin Mouthwash",
+        dose: "—",
+        form: "solution",
+        quantity: "2 tsp in warm water",
+        route: "Gargle",
+        timing: "—",
+        frequency: "TDS",
+        drugClass: "Antiseptic Gargle — Povidone-Iodine",
+        alternatives: "Chlorhexidine, Betadine gargle, Warm salt water",
+        dosing: [
+          ["Adult", "15 mL diluted in warm water", "Gargle", "2–3 times daily", "Do not swallow"]
+        ],
+        warnings: ["Avoid normal water immediately after use."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 22: Mumps
+  // ═══════════════════════════════════════
+  {
+    id: 22,
+    title: "Mumps",
+    categories: ["infect"],
+    severity: "mod",
+    catColor: "cat-infect",
+    complaint: "Parotid gland swelling — Mumps",
+    details: [],
+    alerts: [{ type: "info", text: "Mumps is self-limiting. Treatment is supportive — analgesics + anti-inflammatory. Watch for complications: orchitis, pancreatitis, meningitis." }],
+    medications: [
+      {
+        name: "Tab. Zerostil Plus",
+        dose: "280mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "After meal",
+        frequency: "TDS (7 days)",
+        drugClass: "NSAID — Aceclofenac + Paracetamol Combo",
+        alternatives: "Aceclofenac, Ibuprofen + Paracetamol, Diclofenac",
+        dosing: [
+          ["Adult", "1 tab", "PO", "TDS", "After meals, max 7 days"]
+        ],
+        warnings: ["Avoid in children. Co-prescribe PPI."]
+      },
+      {
+        name: "Tab. P/C (Paracetamol)",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "After meal",
+        frequency: "TDS (5 days)",
+        drugClass: "Analgesic / Antipyretic",
+        alternatives: "Generic Paracetamol, Ibuprofen",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Tab. Exore",
+        dose: "20mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (7 days)",
+        drugClass: "PPI — Esomeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Rabeprazole",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      },
+      {
+        name: "Viodin Mouthwash",
+        dose: "—",
+        form: "solution",
+        quantity: "2 tsp in warm water",
+        route: "Gargle",
+        timing: "—",
+        frequency: "TDS (20 days)",
+        drugClass: "Antiseptic Gargle — Povidone-Iodine",
+        alternatives: "Chlorhexidine, Betadine",
+        dosing: [["See Case 21", "Full dosing table", "—", "—", "—"]],
+        crossRef: 21, warnings: ["Avoid normal water after use."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 23: Boils (Furuncle)
+  // ═══════════════════════════════════════
+  {
+    id: 23,
+    title: "Boils (Furuncle)",
+    categories: ["derm", "infect"],
+    severity: "mod",
+    catColor: "cat-derm",
+    complaint: "Skin boils — furuncle",
+    details: [
+      { label: "Investigations", value: "RBS (Random Blood Sugar)" }
+    ],
+    alerts: [{ type: "tip", text: "Recurrent boils? Check for diabetes (RBS, HbA1c). Consider nasal Mupirocin for S. aureus decolonization." }],
+    medications: [
+      {
+        name: "Tab. Flubex",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "After meal",
+        frequency: "QDS (7 days)",
+        drugClass: "Penicillinase-resistant Penicillin — Flucloxacillin",
+        alternatives: "Flucloxacillin, Amoxicillin-Clavulanate, Clindamycin",
+        dosing: [["See Case 7", "Full dosing table", "—", "—", "—"]],
+        crossRef: 7, warnings: []
+      },
+      {
+        name: "Cap. Exore",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "Empty stomach",
+        frequency: "OD (20 days)",
+        drugClass: "PPI — Esomeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Rabeprazole",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      },
+      {
+        name: "Tab. Ace",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "After meal",
+        frequency: "QDS (5 days)",
+        drugClass: "Analgesic / Antipyretic — Paracetamol",
+        alternatives: "Generic Paracetamol, Ibuprofen",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Tab. Calbo-D",
+        dose: "—",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (2 months)",
+        drugClass: "Calcium + Vitamin D Supplement",
+        alternatives: "Calcium Carbonate + Cholecalciferol, Oscal-D",
+        dosing: [
+          ["Child (>4y)", "½ tab", "PO", "OD", "—"],
+          ["Adult", "1 tab", "PO", "OD–BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Bactrosin Ointment",
+        dose: "—",
+        form: "ointment",
+        quantity: "Thin layer",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD (20 days)",
+        drugClass: "Topical Antibiotic — Mupirocin",
+        alternatives: "Mupirocin, Fusidic Acid, Neosporin",
+        dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
+        crossRef: 3, warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 24: Tinea / Fungal Infection
+  // ═══════════════════════════════════════
+  {
+    id: 24,
+    title: "Tinea / Fungal Infection",
+    categories: ["derm"],
+    severity: "mod",
+    catColor: "cat-derm",
+    complaint: "Fungal skin infection — tinea corporis / cruris",
+    details: [],
+    alerts: [{ type: "tip", text: "Complete full antifungal course (often 2–4 weeks). Itraconazole requires acidic environment — take with food/cola. Monitor LFT if prolonged use." }],
+    medications: [
+      {
+        name: "Cap. Itracon",
+        dose: "100mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "After meal",
+        frequency: "OD (2 months)",
+        drugClass: "Triazole Antifungal — Itraconazole",
+        alternatives: "Fluconazole, Terbinafine, Griseofulvin",
+        dosing: [
+          ["Child (>3y)", "3–5 mg/kg/day", "PO", "OD", "—"],
+          ["Adult (tinea)", "100–200 mg", "PO", "OD", "2–4 weeks (corporis), 2–4 months (unguium)"],
+          ["Elderly", "100 mg", "PO", "OD", "Monitor LFT"]
+        ],
+        warnings: ["Monitor LFT if course >1 month. Drug interactions with CYP3A4 substrates. Take with food."]
+      },
+      {
+        name: "Tab. Dipu",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Desloratadine",
+        alternatives: "Fexofenadine, Cetirizine, Loratadine",
+        dosing: [["See Case 21", "Full dosing table", "—", "—", "—"]],
+        crossRef: 21, warnings: []
+      },
+      {
+        name: "Cap. DLP",
+        dose: "30mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (1 month)",
+        drugClass: "PPI — Dexlansoprazole",
+        alternatives: "Lansoprazole, Omeprazole, Pantoprazole",
+        dosing: [
+          ["Adult", "30–60 mg", "PO", "OD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Keto Gold Soap",
+        dose: "—",
+        form: "solution",
+        quantity: "Use for bathing",
+        route: "Topical",
+        timing: "—",
+        frequency: "Daily",
+        drugClass: "Antifungal Soap — Ketoconazole",
+        alternatives: "Ketoconazole soap, Zinc Pyrithione, Selenium Sulfide",
+        dosing: [
+          ["All ages", "Lather on affected area, leave 3–5 min, rinse", "Topical", "Daily", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Enface Cream",
+        dose: "—",
+        form: "cream",
+        quantity: "Thin layer",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD (1 month)",
+        drugClass: "Topical Antifungal — Sertaconazole / Luliconazole",
+        alternatives: "Clotrimazole, Miconazole, Terbinafine cream, Ketoconazole cream",
+        dosing: [
+          ["All ages (>2y)", "Thin layer to affected area", "Topical", "BD", "2–4 weeks"]
+        ],
+        warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 25: Paediatric LRTI
+  // ═══════════════════════════════════════
+  {
+    id: 25,
+    title: "Paediatric LRTI",
+    categories: ["peds", "resp"],
+    severity: "high",
+    catColor: "cat-peds",
+    complaint: "Lower respiratory tract infection in child",
+    details: [],
+    alerts: [{ type: "warning", text: "EBF indicates neonatal/infant case. Carbapenems are LAST-RESORT — de-escalate based on culture. Monitor respiratory rate and SpO₂." }],
+    medications: [
+      {
+        name: "Syp. Cefuroxime (Clansef)",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "5 mL",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (7 days)",
+        drugClass: "2nd-gen Cephalosporin — Cefuroxime Axetil",
+        alternatives: "Amoxicillin-Clavulanate, Cefixime, Ceftriaxone (severe)",
+        dosing: [
+          ["Infant (3–12 mo)", "40–60 mg/kg/day", "PO", "Divided BD", "—"],
+          ["Child (1–12y)", "20–30 mg/kg/day", "PO", "Divided BD", "Max 500 mg/dose"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Syp. Prednisolone (Pedipred)",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "5 mL",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (5 days)",
+        drugClass: "Corticosteroid — Prednisolone",
+        alternatives: "Dexamethasone, Methylprednisolone",
+        dosing: [
+          ["Child (acute wheeze)", "1–2 mg/kg/day", "PO", "OD or divided BD", "Max 40 mg/day, 3–5 days"],
+          ["Child (croup)", "1 mg/kg", "PO", "Single dose", "—"]
+        ],
+        warnings: ["Short courses (<7 days) generally don't need tapering."]
+      },
+      {
+        name: "Syp. Pedeamin",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "5 mL",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (7 days)",
+        drugClass: "Multivitamin — Paediatric",
+        alternatives: "Any paediatric multivitamin",
+        dosing: [
+          ["Infant", "2.5 mL", "PO", "OD", "—"],
+          ["Child (1–5y)", "5 mL", "PO", "OD–BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Syp. Zovia Gold",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "5 mL",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (2 months)",
+        drugClass: "Zinc + Multivitamin — Immune Support",
+        alternatives: "Zinc sulfate + multivitamin, Zincofer",
+        dosing: [
+          ["Child (6 mo–5y)", "5 mL", "PO", "OD–BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Tab. Arcokant (Montelukast)",
+        dose: "4–5mg",
+        form: "tablet",
+        quantity: "½–1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (evening, 2 months)",
+        drugClass: "LTRA — Montelukast (Paediatric)",
+        alternatives: "Montelukast chewable",
+        dosing: [
+          ["Child (6 mo–5y)", "4 mg granules/chew", "PO", "OD (evening)", "—"],
+          ["Child (6–14y)", "5 mg chewable", "PO", "OD (evening)", "—"]
+        ],
+        warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 26: Fever / Dengue Workup
+  // ═══════════════════════════════════════
+  {
+    id: 26,
+    title: "Fever / Dengue Workup",
+    categories: ["infect"],
+    severity: "mod",
+    catColor: "cat-infect",
+    complaint: "Fever, headache, cough — r/o Dengue",
+    details: [
+      { label: "Investigations", value: "RT-PCR for Dengue, Urine R/M/E, CXR P/A view" }
+    ],
+    alerts: [{ type: "warning", text: "AVOID NSAIDs and Aspirin in suspected Dengue — risk of hemorrhage. Use Paracetamol only for fever. Monitor platelet count." }],
+    medications: [
+      {
+        name: "Tab. Cefuroxime",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (7 days)",
+        drugClass: "2nd-gen Cephalosporin — Cefuroxime Axetil",
+        alternatives: "Amoxicillin-Clavulanate, Azithromycin, Cefixime",
+        dosing: [
+          ["Child", "20–30 mg/kg/day", "PO", "Divided BD", "Max 500 mg/dose"],
+          ["Adult", "250–500 mg", "PO", "BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Cap. Finix",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "Before meal",
+        frequency: "OD (20 days)",
+        drugClass: "PPI — Omeprazole/Esomeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Rabeprazole",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      },
+      {
+        name: "Tab. Tofen",
+        dose: "—",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (7 days)",
+        drugClass: "Antihistamine + Decongestant Combo",
+        alternatives: "Fexofenadine, Cetirizine + Pseudoephedrine",
+        dosing: [
+          ["Adult", "1 tab", "PO", "OD", "—"]
+        ],
+        warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 27: Infected Scabies
+  // ═══════════════════════════════════════
+  {
+    id: 27,
+    title: "Infected Scabies",
+    categories: ["derm", "infect"],
+    severity: "mod",
+    catColor: "cat-derm",
+    complaint: "Scabies with secondary bacterial infection",
+    details: [],
+    alerts: [{ type: "info", text: "Treat ALL household contacts simultaneously. Wash all bedding/clothing in hot water. Ivermectin on empty stomach with water only — avoid food 2h before/after." }],
+    medications: [
+      {
+        name: "Tab. Rupin",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Rupatadine",
+        alternatives: "Fexofenadine, Cetirizine, Loratadine",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      },
+      {
+        name: "Cap. A-Flox",
+        dose: "500mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "After meal",
+        frequency: "QDS",
+        drugClass: "Penicillinase-resistant Penicillin — Flucloxacillin",
+        alternatives: "Flucloxacillin, Amoxicillin-Clavulanate, Cefuroxime",
+        dosing: [["See Case 7", "Full dosing table", "—", "—", "—"]],
+        crossRef: 7, warnings: []
+      },
+      {
+        name: "Cap. Finix",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (7 days)",
+        drugClass: "PPI — Omeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Rabeprazole",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      },
+      {
+        name: "Tab. Ivera",
+        dose: "12mg",
+        form: "tablet",
+        quantity: "2 tabs",
+        route: "PO",
+        timing: "Empty stomach",
+        frequency: "Day 1 + repeat Day 8",
+        drugClass: "Antiparasitic — Ivermectin",
+        alternatives: "Permethrin 5% cream (topical alternative)",
+        dosing: [
+          ["Child (>15 kg)", "200 mcg/kg", "PO", "Single dose, repeat Day 8", "—"],
+          ["Adult", "200 mcg/kg (~12 mg for 60 kg)", "PO", "Single dose, repeat Day 8", "—"]
+        ],
+        warnings: ["Take on empty stomach with water only. Avoid food 2h before and after. Contraindicated in pregnancy."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 28: Allergic Rhinitis
+  // ═══════════════════════════════════════
+  {
+    id: 28,
+    title: "Allergic Rhinitis",
+    categories: ["resp", "derm"],
+    severity: "low",
+    catColor: "cat-resp",
+    complaint: "Sneezing, allergic rhinitis",
+    details: [
+      { label: "Investigations", value: "Urine R/M/E" }
+    ],
+    alerts: [{ type: "tip", text: "Intranasal corticosteroids (Beclomethasone) are first-line for persistent allergic rhinitis. 2nd-gen antihistamines preferred (less sedation)." }],
+    medications: [
+      {
+        name: "Tab. Monas",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (2 months)",
+        drugClass: "LTRA — Montelukast",
+        alternatives: "Zafirlukast",
+        dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
+        crossRef: 4, warnings: []
+      },
+      {
+        name: "Tab. Ebastin",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Ebastine",
+        alternatives: "Fexofenadine, Cetirizine, Loratadine, Bilastine",
+        dosing: [
+          ["Child (6–11y)", "5 mg", "PO", "OD", "—"],
+          ["Adolescent/Adult", "10–20 mg", "PO", "OD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Becospray",
+        dose: "50mcg/spray",
+        form: "inhaler",
+        quantity: "2 puffs per nostril",
+        route: "Intranasal",
+        timing: "—",
+        frequency: "BD (2 months)",
+        drugClass: "Intranasal Corticosteroid — Beclomethasone",
+        alternatives: "Fluticasone nasal, Mometasone nasal, Budesonide nasal",
+        dosing: [
+          ["Child (6–12y)", "1 spray each nostril", "Intranasal", "BD", "—"],
+          ["Adult", "2 sprays each nostril", "Intranasal", "BD (reduce to OD when controlled)", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Cap. Finix",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "Before meal",
+        frequency: "OD (20 days)",
+        drugClass: "PPI — Omeprazole",
+        alternatives: "Omeprazole, Pantoprazole",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 29: Lichen Simplex / Dermatitis
+  // ═══════════════════════════════════════
+  {
+    id: 29,
+    title: "Lichen Simplex / Dermatitis",
+    categories: ["derm"],
+    severity: "low",
+    catColor: "cat-derm",
+    complaint: "Itchy black thickened area (~2×1 cm, Rt leg), headache",
+    details: [],
+    alerts: [],
+    medications: [
+      {
+        name: "Tab. Fexo",
+        dose: "120mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Fexofenadine",
+        alternatives: "Cetirizine, Loratadine, Levocetirizine",
+        dosing: [["See Case 18", "Full dosing table", "—", "—", "—"]],
+        crossRef: 18, warnings: []
+      },
+      {
+        name: "Deremasol-N Cream",
+        dose: "—",
+        form: "cream",
+        quantity: "Thin layer",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD (2 months)",
+        drugClass: "Topical Corticosteroid + Antifungal + Antibacterial",
+        alternatives: "Betamethasone + Neomycin + Clotrimazole, Quadriderm",
+        dosing: [
+          ["Adult", "Thin layer to affected area", "Topical", "BD", "Max 2–4 weeks"]
+        ],
+        warnings: ["Triple-combination creams should not be used long-term. Risk of skin atrophy and resistance."]
+      },
+      {
+        name: "Cap. Rabe",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "Before meal",
+        frequency: "OD (20 days)",
+        drugClass: "PPI — Rabeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Esomeprazole",
+        dosing: [["See Case 18", "Full dosing table", "—", "—", "—"]],
+        crossRef: 18, warnings: []
+      },
+      {
+        name: "Tab. Napa Extend",
+        dose: "665mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS (6 days)",
+        drugClass: "Analgesic — Paracetamol Extended-Release",
+        alternatives: "Paracetamol 500mg, Ibuprofen",
+        dosing: [
+          ["Adult", "665 mg (1 tab)", "PO", "TDS", "Max 3990 mg/day, do not crush"],
+          ["Elderly", "665 mg", "PO", "BD", "Max 2 g/day if liver impairment"]
+        ],
+        warnings: ["Do NOT crush/split extended-release tabs — risk of dose dumping."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 30: Pneumonia (Inpatient)
+  // ═══════════════════════════════════════
+  {
+    id: 30,
+    title: "Pneumonia (Inpatient)",
+    categories: ["resp", "emergency"],
+    severity: "high",
+    catColor: "cat-resp",
+    complaint: "Fever, breathlessness, chest tightness, ronchi",
+    details: [
+      { label: "Diet", value: "Liquid diet" },
+      { label: "Intervention", value: "O₂ inhalation 2–3 L/min" }
+    ],
+    alerts: [{ type: "danger", text: "Monitor SpO₂ closely. If SpO₂ <92% on O₂ or worsening dyspnea → consider ICU. Assess CURB-65 score for severity." }],
+    medications: [
+      {
+        name: "Inj. Ceftriaxone",
+        dose: "1gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
+        drugClass: "3rd-gen Cephalosporin",
+        alternatives: "Cefotaxime, Levofloxacin, Azithromycin",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Inj. Pantonix",
+        dose: "20mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
+        drugClass: "PPI — Pantoprazole",
+        alternatives: "Omeprazole, Esomeprazole",
+        dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
+        crossRef: 3, warnings: []
+      },
+      {
+        name: "Tab. Monas",
+        dose: "10mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "LTRA — Montelukast",
+        alternatives: "Zafirlukast",
+        dosing: [["See Case 4", "Full dosing table", "—", "—", "—"]],
+        crossRef: 4, warnings: []
+      },
+      {
+        name: "Tab. P/C (Paracetamol)",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "q6h PRN",
+        drugClass: "Antipyretic / Analgesic",
+        alternatives: "Paracetamol suppository, Ibuprofen",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Napa Suppository",
+        dose: "500mg",
+        form: "suppository",
+        quantity: "1 stick",
+        route: "P/R",
+        timing: "—",
+        frequency: "SOS",
+        drugClass: "Antipyretic — Paracetamol Rectal",
+        alternatives: "Paracetamol oral, Ibuprofen",
+        dosing: [
+          ["Child (1–5y)", "125–250 mg", "PR", "q6h", "60 mg/kg/day"],
+          ["Child (6–12y)", "250–500 mg", "PR", "q6h", "—"],
+          ["Adult", "500 mg–1 g", "PR", "q6h", "Max 4 g/day"]
+        ],
+        warnings: ["Do not dissolve in water. Insert rectally only."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 31: Mechanical Low Back Pain
+  // ═══════════════════════════════════════
+  {
+    id: 31,
+    title: "Mechanical Low Back Pain",
+    categories: ["trauma"],
+    severity: "mod",
+    catColor: "cat-trauma",
+    complaint: "Low back pain — mechanical origin",
+    details: [],
+    alerts: [{ type: "tip", text: "Red flags: night pain, weight loss, fever, bladder/bowel dysfunction, progressive neurological deficit → urgent investigation (MRI)." }],
+    medications: [
+      {
+        name: "Tab. Flamex",
+        dose: "400mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS (20 days)",
+        drugClass: "NSAID — Ibuprofen",
+        alternatives: "Naproxen, Diclofenac, Etoricoxib, Paracetamol",
+        dosing: [["See Case 16", "Full dosing table", "—", "—", "—"]],
+        crossRef: 16, warnings: []
+      },
+      {
+        name: "Tab. Reservix (Aceclofenac)",
+        dose: "100mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "After meal",
+        frequency: "BD (20 days)",
+        drugClass: "NSAID — Aceclofenac",
+        alternatives: "Diclofenac, Naproxen, Etoricoxib, Piroxicam",
+        dosing: [
+          ["Adult", "100 mg", "PO", "BD", "After meals"],
+          ["Elderly", "100 mg", "PO", "OD–BD", "Lowest effective dose"]
+        ],
+        warnings: ["Co-prescribe PPI. Avoid in renal impairment."]
+      },
+      {
+        name: "Cap. Maxpro",
+        dose: "20mg",
+        form: "capsule",
+        quantity: "1 cap",
+        route: "PO",
+        timing: "Before meal",
+        frequency: "OD (20 days)",
+        drugClass: "PPI — Esomeprazole",
+        alternatives: "Omeprazole, Pantoprazole, Rabeprazole",
+        dosing: [["See Case 20", "Full dosing table", "—", "—", "—"]],
+        crossRef: 20, warnings: []
+      },
+      {
+        name: "Tab. Neuro-B",
+        dose: "—",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (2 months)",
+        drugClass: "Vitamin B Complex — Neurotropic",
+        alternatives: "Methylcobalamin, Neurobion, B1+B6+B12 combo",
+        dosing: [
+          ["Adult", "1 tab", "PO", "OD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Tab. Algecal-DX",
+        dose: "—",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (2 months)",
+        drugClass: "Calcium + Vitamin D3 Supplement",
+        alternatives: "Calcium Carbonate + Cholecalciferol, Oscal-D",
+        dosing: [
+          ["Adult", "1 tab", "PO", "OD–BD", "After meals"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Tab. Beklo",
+        dose: "5mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "Muscle Relaxant — Baclofen",
+        alternatives: "Tizanidine, Chlorzoxazone, Methocarbamol, Diazepam",
+        dosing: [
+          ["Child (>1y)", "0.75–2 mg/kg/day", "PO", "Divided TDS", "Max 40 mg/day (>8y)"],
+          ["Adult", "5 mg TDS → titrate to 20 mg TDS", "PO", "TDS", "Max 80 mg/day"],
+          ["Elderly", "5 mg", "PO", "OD–BD", "Start low, sedation risk"]
+        ],
+        warnings: ["Do NOT stop abruptly — risk of withdrawal seizures. Taper over 1–2 weeks."]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 32: Acute Appendicitis (Inpatient)
+  // ═══════════════════════════════════════
+  {
+    id: 32,
+    title: "Acute Appendicitis (Inpatient)",
+    categories: ["gi", "surgical", "emergency"],
+    severity: "high",
+    catColor: "cat-surgical",
+    complaint: "Abdominal pain, fever, nausea, vomiting — appendicitis",
+    details: [
+      { label: "Diet", value: "NPO / TFO" },
+      { label: "IV Fluids", value: "Inf. 5% DNS (1L) + 5% DA (1L) + H/S (1L) with Actrapid 10 units" }
+    ],
+    alerts: [{ type: "danger", text: "Surgical emergency. NPO mandatory — prepare for appendectomy. Alvarado score ≥7 → surgery. CT/USG for confirmation." }],
+    medications: [
+      {
+        name: "Inj. Ceftriaxone",
+        dose: "2gm",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
+        drugClass: "3rd-gen Cephalosporin",
+        alternatives: "Cefotaxime, Cefuroxime",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Inj. Metro",
+        dose: "400mg",
+        form: "vial",
+        quantity: "1 bottle",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "TDS",
+        drugClass: "Nitroimidazole — Metronidazole",
+        alternatives: "Tinidazole, Ornidazole",
+        dosing: [["See Case 9", "Full dosing table", "—", "—", "—"]],
+        crossRef: 9, warnings: []
+      },
+      {
+        name: "Inj. Pantonix",
+        dose: "40mg",
+        form: "vial",
+        quantity: "1 vial",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "BD",
+        drugClass: "PPI — Pantoprazole",
+        alternatives: "Omeprazole, Esomeprazole",
+        dosing: [["See Case 3", "Full dosing table", "—", "—", "—"]],
+        crossRef: 3, warnings: []
+      },
+      {
+        name: "Inj. Viset",
+        dose: "5mg",
+        form: "ampule",
+        quantity: "1 amp",
+        route: "I/V",
+        timing: "Stat",
+        frequency: "—",
+        drugClass: "Antispasmodic / Analgesic — Hyoscine Butylbromide",
+        alternatives: "Hyoscine Butylbromide, Drotaverine, Dicyclomine",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 33: Paed Fever / Rhinitis
+  // ═══════════════════════════════════════
+  {
+    id: 33,
+    title: "Paediatric Fever & Rhinitis",
+    categories: ["peds"],
+    severity: "low",
+    catColor: "cat-peds",
+    complaint: "Fever, runny nose in child",
+    details: [],
+    alerts: [],
+    medications: [
+      {
+        name: "Tab. P/C (Paracetamol)",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "QDS (5 days)",
+        drugClass: "Antipyretic / Analgesic — Paracetamol",
+        alternatives: "Paracetamol syrup, Ibuprofen",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Tab. Fexo",
+        dose: "120mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (20 days)",
+        drugClass: "2nd-gen Antihistamine — Fexofenadine",
+        alternatives: "Cetirizine, Loratadine, Levocetirizine",
+        dosing: [["See Case 18", "Full dosing table", "—", "—", "—"]],
+        crossRef: 18, warnings: []
+      },
+      {
+        name: "Syp. Deras",
+        dose: "10mL",
+        form: "syrup",
+        quantity: "2 tsp",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS",
+        drugClass: "Antihistamine + Decongestant Syrup",
+        alternatives: "Desloratadine syrup, Cetirizine syrup, Loratadine syrup",
+        dosing: [
+          ["Child (2–5y)", "2.5 mL", "PO", "OD", "—"],
+          ["Child (6–12y)", "5 mL", "PO", "OD–BD", "—"],
+          ["Adult", "10 mL", "PO", "BD–TDS", "—"]
+        ],
+        warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 34: AFI — Candida Intertrigo
+  // ═══════════════════════════════════════
+  {
+    id: 34,
+    title: "AFI — Candida Intertrigo",
+    categories: ["derm", "infect"],
+    severity: "low",
+    catColor: "cat-derm",
+    complaint: "Acute febrile illness with candida skin infection (intertrigo)",
+    details: [],
+    alerts: [{ type: "tip", text: "Keep skin folds dry. Loose clothing. Antifungal cream + oral azole if widespread." }],
+    medications: [
+      {
+        name: "Tab. Zimax",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (7 days)",
+        drugClass: "Macrolide — Azithromycin",
+        alternatives: "Azithromycin, Clarithromycin, Amoxicillin",
+        dosing: [["See Case 16", "Full dosing table", "—", "—", "—"]],
+        crossRef: 16, warnings: []
+      },
+      {
+        name: "Tab. Napa",
+        dose: "500mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS (6 days)",
+        drugClass: "Antipyretic — Paracetamol",
+        alternatives: "Generic Paracetamol, Ibuprofen",
+        dosing: [["See Case 1", "Full dosing table", "—", "—", "—"]],
+        crossRef: 1, warnings: []
+      },
+      {
+        name: "Tab. Histacin",
+        dose: "4mg",
+        form: "tablet",
+        quantity: "1 tab",
+        route: "PO",
+        timing: "—",
+        frequency: "OD (7 days)",
+        drugClass: "1st-gen Antihistamine — Chlorpheniramine",
+        alternatives: "Fexofenadine, Cetirizine, Loratadine (less sedating alternatives)",
+        dosing: [
+          ["Child (1–5y)", "1 mg", "PO", "BD–TDS", "—"],
+          ["Child (6–12y)", "2 mg", "PO", "TDS", "—"],
+          ["Adult", "4 mg", "PO", "TDS", "Max 24 mg/day"]
+        ],
+        warnings: ["1st-gen: causes sedation. Use 2nd-gen antihistamines as preferred alternative."]
+      },
+      {
+        name: "X-Bin Cream",
+        dose: "—",
+        form: "cream",
+        quantity: "Apply to affected area",
+        route: "Topical",
+        timing: "—",
+        frequency: "TDS",
+        drugClass: "Topical Antifungal — Clotrimazole / Miconazole",
+        alternatives: "Clotrimazole, Miconazole, Nystatin cream",
+        dosing: [
+          ["All ages", "Apply thin layer to affected area", "Topical", "BD–TDS", "2–4 weeks"]
+        ],
+        warnings: []
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════
+  // CASE 35: Paed Urticaria / Allergy
+  // ═══════════════════════════════════════
+  {
+    id: 35,
+    title: "Paediatric Urticaria / Allergy",
+    categories: ["peds", "derm"],
+    severity: "mod",
+    catColor: "cat-peds",
+    complaint: "Urticaria / allergic reaction in child",
+    details: [],
+    alerts: [{ type: "warning", text: "If urticaria with lip/tongue swelling, stridor, or hypotension → ANAPHYLAXIS — give IM Adrenaline immediately." }],
+    medications: [
+      {
+        name: "Syp. Urtimex",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "2 tsp",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (14 days)",
+        drugClass: "2nd-gen Antihistamine Syrup — Levocetirizine/Desloratadine",
+        alternatives: "Cetirizine syrup, Loratadine syrup, Fexofenadine syrup",
+        dosing: [
+          ["Child (6 mo–5y)", "1.25–2.5 mL", "PO", "OD", "—"],
+          ["Child (6–12y)", "2.5–5 mL", "PO", "OD–BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Syp. Famotak",
+        dose: "0.5mL",
+        form: "syrup",
+        quantity: "0.5 mL",
+        route: "PO",
+        timing: "—",
+        frequency: "BD (14 days)",
+        drugClass: "H2 Blocker — Famotidine Syrup",
+        alternatives: "Ranitidine syrup, Cimetidine (avoid in peds)",
+        dosing: [
+          ["Infant/Child", "0.5–1 mg/kg", "PO", "BD", "—"],
+          ["Adolescent", "10–20 mg", "PO", "BD", "—"]
+        ],
+        warnings: []
+      },
+      {
+        name: "Syp. Preedil",
+        dose: "5mL",
+        form: "syrup",
+        quantity: "2 tsp",
+        route: "PO",
+        timing: "—",
+        frequency: "TDS (7 days)",
+        drugClass: "Corticosteroid — Prednisolone Syrup",
+        alternatives: "Dexamethasone, Methylprednisolone",
+        dosing: [
+          ["Child (acute)", "1–2 mg/kg/day", "PO", "Divided BD–TDS", "Max 40 mg/day, 3–5 days"]
+        ],
+        warnings: ["Short courses (<7 days) generally don't need tapering."]
+      },
+      {
+        name: "Calamine Lotion",
+        dose: "—",
+        form: "lotion",
+        quantity: "Apply to itchy areas",
+        route: "Topical",
+        timing: "—",
+        frequency: "BD (7 days)",
+        drugClass: "Topical Anti-pruritic",
+        alternatives: "Menthol cream, Crotamiton",
+        dosing: [["See Case 18", "Full dosing table", "—", "—", "—"]],
+        crossRef: 18, warnings: []
       }
     ]
   }
@@ -1393,6 +3272,35 @@ const QUICK_REF = [
       ["Adult", "≥18 years", "50–80 kg"],
       ["Elderly", "≥65 years", "Dose reduction often needed"]
     ]
+  },
+  {
+    title: "Gestational Age Classification",
+    headerClass: "header-warning",
+    icon: ICONS.heart,
+    headers: ["Weeks", "Classification", "Notes"],
+    rows: [
+      ["<28 weeks", "Abortion (Miscarriage)", "Non-viable"],
+      ["28–37 weeks", "Premature / Preterm", "NICU may be needed"],
+      [">37 weeks", "Term Pregnancy", "Normal delivery expected"],
+      [">40 weeks", "Post-Term", "Induction may be needed"]
+    ]
+  },
+  {
+    title: "Paediatric Daily Fluid Requirement",
+    headerClass: "header-info",
+    icon: ICONS.info,
+    headers: ["Day / Age", "Volume", "Notes"],
+    rows: [
+      ["Day 1", "60 mL/kg", "Neonate"],
+      ["Day 2", "80 mL/kg", "Neonate"],
+      ["Day 3", "100 mL/kg", "Neonate"],
+      ["Day 4", "120 mL/kg", "Neonate"],
+      ["Day 5", "140 mL/kg", "Neonate"],
+      ["Day 6+", "150 mL/kg", "Neonate"],
+      ["7 days – 2 yrs", "150 mL/kg/day", "Holliday-Segar"],
+      ["2 – 4 yrs", "120 mL/kg/day", "Holliday-Segar"],
+      ["4 – 8 yrs", "100 mL/kg/day", "Holliday-Segar"]
+    ]
   }
 ];
 
@@ -1444,7 +3352,7 @@ function renderCaseCard(c) {
   const medsHTML = c.medications.map(m => renderMedication(m)).join('');
 
   return `
-    <div class="case-card" data-id="${c.id}" data-categories="${c.categories.join(',')}" data-search="${(c.title + ' ' + c.complaint + ' ' + c.medications.map(m=>m.name + ' ' + m.drugClass + ' ' + m.alternatives).join(' ')).toLowerCase()}">
+    <div class="case-card" data-id="${c.id}" data-categories="${c.categories.join(',')}" data-search="${(c.title + ' ' + c.complaint + ' ' + c.medications.map(m=>m.name + ' ' + m.drugClass + ' ' + m.alternatives + ' ' + (m.form || '')).join(' ')).toLowerCase()}">
       <div class="case-header" onclick="toggleCase(${c.id})">
         <div class="case-number ${c.catColor}">${c.id}</div>
         <div class="case-info">
@@ -1470,6 +3378,7 @@ function renderCaseCard(c) {
 }
 
 function renderMedication(m) {
+  const formInfo = FORM_CONFIG[m.form] || { icon: '💊', label: m.form || 'Unknown' };
   const crossRefHTML = m.crossRef ? `<span class="cross-ref" onclick="scrollToCase(${m.crossRef})">↗ See Case ${m.crossRef} for full dosing</span>` : '';
   const isCrossRef = m.crossRef && m.dosing.length === 1 && m.dosing[0][0].startsWith('See');
 
@@ -1480,30 +3389,54 @@ function renderMedication(m) {
     </div>
   `).join('');
 
+  // Build prescription pipeline steps
+  const pipelineSteps = [];
+  if (m.quantity && m.quantity !== '—') {
+    pipelineSteps.push(`<div class="rx-step rx-step-container"><span class="rx-step-label">Qty</span><span class="rx-step-value">${m.quantity}</span></div>`);
+  }
+  if (m.route && m.route !== '—') {
+    pipelineSteps.push(`<div class="rx-step rx-step-route"><span class="rx-step-label">Route</span><span class="rx-step-value">${m.route}</span></div>`);
+  }
+  if (m.timing && m.timing !== '—') {
+    pipelineSteps.push(`<div class="rx-step rx-step-timing"><span class="rx-step-label">When</span><span class="rx-step-value">${m.timing}</span></div>`);
+  }
+  if (m.frequency && m.frequency !== '—') {
+    pipelineSteps.push(`<div class="rx-step rx-step-frequency"><span class="rx-step-label">Freq</span><span class="rx-step-value">${m.frequency}</span></div>`);
+  }
+  const pipelineHTML = pipelineSteps.length ? `<div class="rx-pipeline">${pipelineSteps.join('<span class="rx-arrow">→</span>')}</div>` : '';
+
+  // Cross-ref compact card
   if (isCrossRef) {
     return `
-      <div style="margin-bottom:1rem;padding:0.75rem 1rem;background:var(--bg-warm);border-radius:var(--radius-sm);border-left:3px solid var(--primary);">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-          <div>
-            <span class="med-name">${m.name}</span>
-            <span class="med-class" style="margin-left:8px;">${m.drugClass}</span>
-            ${m.alternatives ? `<div class="med-alt"><strong>Alt:</strong> ${m.alternatives}</div>` : ''}
+      <div class="med-card-crossref">
+        <div>
+          <span class="med-form-badge badge-${m.form}"><span class="form-icon">${formInfo.icon}</span> ${formInfo.label}</span>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <span class="med-card-title">${m.name}</span>
+            ${m.dose && m.dose !== '—' ? `<span class="med-card-dose">${m.dose}</span>` : ''}
           </div>
-          ${crossRefHTML}
+          <div class="med-card-class">${m.drugClass}</div>
+          ${pipelineHTML}
+          ${m.alternatives ? `<div class="med-card-alt"><strong>Alt: </strong>${m.alternatives}</div>` : ''}
         </div>
+        ${crossRefHTML}
         ${warningsHTML}
       </div>`;
   }
 
+  // Full medication card
   const headers = ['Age Group', 'Dose', 'Route', 'Frequency', 'Max / Notes'];
   return `
-    <div style="margin-bottom:1.25rem;">
-      <div style="margin-bottom:0.5rem;">
-        <span class="med-name">${m.name}</span>
-        <span class="med-class" style="margin-left:8px;">${m.drugClass}</span>
-        ${m.alternatives ? `<div class="med-alt"><strong>Alternatives:</strong> ${m.alternatives}</div>` : ''}
-        ${crossRefHTML}
+    <div class="med-card" data-form="${m.form}">
+      <span class="med-form-badge badge-${m.form}"><span class="form-icon">${formInfo.icon}</span> ${formInfo.label}</span>
+      <div class="med-card-header">
+        <div class="med-card-title">${m.name}</div>
+        ${m.dose && m.dose !== '—' ? `<div class="med-card-dose">${m.dose}</div>` : ''}
       </div>
+      <div class="med-card-class">${m.drugClass}</div>
+      ${pipelineHTML}
+      ${m.alternatives ? `<div class="med-card-alt"><strong>Alternatives: </strong>${m.alternatives}</div>` : ''}
+      ${crossRefHTML}
       <div class="med-table-wrapper">
         <table class="med-table">
           <thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>
